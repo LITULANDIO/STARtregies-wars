@@ -1,1 +1,12 @@
-<div>PEOPLE</div>
+<article class="container mx-auto">
+    <div class="mb-5">
+        <h2>People</h2>
+    </div>
+    <div class="h-full | flex flex-col justify-center items-center">
+        <BoxContent v-for="(people, index) in peopleRefList" :key="index"
+            :title="people.name"
+            @onGoRouter="onGoRouter"
+        />
+    </div>
+    </article>
+    
