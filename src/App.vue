@@ -21,10 +21,12 @@
   color: $yellow;
   font-size: 3em !important;
   }
-
   h2{
     font-size: 2em !important;
-
   }
+  h3{
+    font-size: 1.5em !important;
+  }
+
 }
 </style>

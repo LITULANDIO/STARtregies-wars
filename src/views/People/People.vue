@@ -3,22 +3,40 @@
 <script>
 import BoxContent from "@/components/box-content/BoxContent.vue";
 import GoBack from "@/components/go-back/GoBack.vue";
+import Search from "@/components/search/Search.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
-import { onBeforeMount, ref } from '@vue/runtime-core';
+import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate } from '@vue/runtime-core';
 export default {
     name: 'People',
     components:{
         BoxContent,
-        GoBack
+        GoBack,
+        Search
     },
     emits:[],
     setup(){
 
-        const peopleRefList = ref([]);
+        const characterList = reactive({
+                characters: [],
+                search: "",
+                filterCharactersList: computed(()=>{
+                return characterList.characters.filter(data => {
+                    if(data.name){
+                        return data.name.toLowerCase().includes(characterList.search.toLowerCase())
+                    }
+                }
+                )})
+            });
+        const showMessageRefBool = ref(false);
+
 
         onBeforeMount(async() =>{
             await getPeopleList();
+        });
+
+        onBeforeUpdate(() =>{
+            characterList.filterCharactersList != 0? showMessageRefBool.value = false : showMessageRefBool.value = true;
         })
 
        
@@ -37,7 +55,7 @@ export default {
         }
 
         const getPeopleList = async () =>{
-           peopleRefList.value = await setNameSectionstoLoweCase({getSection: getRequestPeople()})
+           characterList.characters = await setNameSectionstoLoweCase({getSection: getRequestPeople()})
         };
 
 
@@ -45,10 +63,12 @@ export default {
             console.log(event.name)
         }
 
+
+
         return{
             onGoRouter,
-            peopleRefList
-
+            ...toRefs(characterList),
+            showMessageRefBool
         }
     }
 
