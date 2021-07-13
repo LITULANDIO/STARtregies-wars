@@ -1,7 +1,25 @@
 <template>
+<div id="background-stars" class="h-screen pl-5 pr-5">
+  <div class="text-center py-8">
+    <h1>STARtregies WARS</h1>
+  </div>
   <router-view />
+</div>
 </template>
 
-<style>
+<style lang="scss">
+@import "./assets/colors.scss";
 
+#background-stars{
+  
+  background-image: url("./assets/img/background.png");
+  background-repeat: no-repeat;
+  div{
+    font-family: 'Star Jedi', arial;
+  }
+  h1{
+  color: $yellow;
+  font-size: 3em !important;
+  }
+}
 </style>

@@ -1,16 +1,30 @@
 <template src="./Home.html"></template>
 
 <script>
+import { useRouter } from "vue-router";
+
 export default {
     name: 'Home',
-    components:{
-
-    },
-    emits:[],
     setup(){
 
-        return{
+        const router = useRouter();
 
+        const onGoPeople = () =>{
+            router.push('/people');
+        }
+
+        const onGoPlanets = () =>{
+            router.push('/planets');
+        }
+
+        const onGoStarships = () =>{
+            router.push('/starships');
+        }
+
+        return{
+            onGoPeople,
+            onGoPlanets,
+            onGoStarships
         }
     }
 
