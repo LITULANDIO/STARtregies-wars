@@ -1,15 +1,8 @@
 <article class="container mx-auto">
 <div class="h-full | flex flex-col justify-center items-center">
-    <section class="w-full h-20 | mb-5 | card" @click="onGoPeople">
-        people
-    </section>
-    
-    <section class="w-full h-20 | mb-5 | card" @click="onGoPlanets">
-        planets
-    </section>
-    
-    <section class="w-full h-20 | mb-5 | card" @click="onGoStarships">
-        starships
-    </section>
+    <BoxContent v-for="(section, index) in sectionsList" :key="index"
+        :title="section.title"
+        @onGoRouter="onGoRouter"
+    />
 </div>
 </article>

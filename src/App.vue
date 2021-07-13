@@ -14,12 +14,17 @@
   
   background-image: url("./assets/img/background.png");
   background-repeat: no-repeat;
-  div{
+  div, h1, h2, h3{
     font-family: 'Star Jedi', arial;
   }
-  h1{
+  h1, h2, h3{
   color: $yellow;
   font-size: 3em !important;
+  }
+
+  h2{
+    font-size: 2em !important;
+
   }
 }
 </style>
