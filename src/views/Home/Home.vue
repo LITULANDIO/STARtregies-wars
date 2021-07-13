@@ -20,13 +20,13 @@ export default {
 
         const getSections = () =>{
             sectionsList.value = [
-                {title: "people", link: "/people"}, 
+                {title: "character", link: "/people"}, 
                 {title: "planets", link: "/planets"}, 
                 {title: "starships", link: "/starships"}]
         }
 
         const onGoRouter = (event) =>{
-            if(event.name === "people") router.push("/people");
+            if(event.name === "character") router.push("/people");
             if(event.name === "planets") router.push("/planets");
             if(event.name === "starships") router.push("/starships");
         }

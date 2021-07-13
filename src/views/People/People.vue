@@ -2,13 +2,15 @@
 
 <script>
 import BoxContent from "@/components/box-content/BoxContent.vue";
+import GoBack from "@/components/go-back/GoBack.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
 import { onBeforeMount, ref } from '@vue/runtime-core';
 export default {
     name: 'People',
     components:{
-        BoxContent
+        BoxContent,
+        GoBack
     },
     emits:[],
     setup(){
