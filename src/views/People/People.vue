@@ -4,7 +4,7 @@
 import BoxContent from "@/components/box-content/BoxContent.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
-import { onBeforeMount, onMounted, ref } from '@vue/runtime-core';
+import { onBeforeMount, ref } from '@vue/runtime-core';
 export default {
     name: 'People',
     components:{
@@ -15,7 +15,7 @@ export default {
 
         const peopleRefList = ref([]);
 
-        onMounted(async() =>{
+        onBeforeMount(async() =>{
             await getPeopleList();
         })
 
@@ -36,7 +36,6 @@ export default {
 
         const getPeopleList = async () =>{
            peopleRefList.value = await setNameSectionstoLoweCase({getSection: getRequestPeople()})
-           console.log('peopleRefList', peopleRefList.value)
         };
 
 
