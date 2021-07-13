@@ -1,3 +1,4 @@
+import axios from "axios";
 
 export const StarshipsDataProvider = ({ type, params, baseAPIurl }) => {
 
@@ -6,13 +7,12 @@ export const StarshipsDataProvider = ({ type, params, baseAPIurl }) => {
     switch (type) {
         case "GET_STARSHIPS":
             if (baseAPIurl) {
-                let paramsUrl = new URLSearchParams(params).toString();
                 options = {
                     method: 'GET',
-                    url: `${baseAPIurl}/${paramsUrl}`
+                    url: `${baseAPIurl}/starships`
                 };
             } else {
-                throw new Error(`Error params are necessary ${JSON.stringify(params)}`)
+                throw new Error(`Error baseAPIurl are necessary`)
             }
             break;
     }
