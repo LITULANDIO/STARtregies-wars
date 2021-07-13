@@ -3,7 +3,8 @@
 <script>
 import BoxContent from "@/components/box-content/BoxContent.vue";
 import { DataProvider } from "@/data-providers/index.js";
-import { onBeforeMount, ref } from '@vue/runtime-core';
+import { setNameSectionstoLoweCase } from "@/utils/utils.js";
+import { onBeforeMount, onMounted, ref } from '@vue/runtime-core';
 export default {
     name: 'People',
     components:{
@@ -14,13 +15,12 @@ export default {
 
         const peopleRefList = ref([]);
 
-        onBeforeMount(async() =>{
-            await getPeople();
-            setNamePeopletoLoweCase();
+        onMounted(async() =>{
+            await getPeopleList();
+        })
 
-        });
-
-        const getPeople = async () =>{
+       
+        const getRequestPeople = async () =>{
             let request = [];
             let emptyRequest = [];
             try{
@@ -34,19 +34,9 @@ export default {
             return request;
         }
 
-        const setNamePeopletoLoweCase = async () =>{
-            const peopleList = await getPeople();
-            let newPeopleList = [];
-            let newPeopleObj = {};
-
-            if(peopleList){
-                peopleList.results.forEach(people => {
-                    newPeopleObj = {name: people.name.toLowerCase()}
-                    newPeopleList.push(newPeopleObj);
-                });
-            }
-
-            peopleRefList.value = newPeopleList;
+        const getPeopleList = async () =>{
+           peopleRefList.value = await setNameSectionstoLoweCase({getSection: getRequestPeople()})
+           console.log('peopleRefList', peopleRefList.value)
         };
 
 
