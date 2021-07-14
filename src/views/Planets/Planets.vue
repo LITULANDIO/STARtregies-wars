@@ -3,23 +3,40 @@
 <script>
 import BoxContent from "@/components/box-content/BoxContent.vue";
 import GoBack from "@/components/go-back/GoBack.vue";
+import Search from "@/components/search/Search.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
-import { onBeforeMount, ref } from '@vue/runtime-core';
+import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate } from '@vue/runtime-core';
 
 export default {
     name: 'Planets',
     components:{
         BoxContent,
-        GoBack
+        GoBack,
+        Search
     },
     setup(){
 
-        const planetsRefList = ref([]);
+         const planetsList = reactive({
+                planets: [],
+                search: "",
+                filterPlanetsList: computed(()=>{
+                return planetsList.planets.filter(data => {
+                    if(data.name){
+                        return data.name.toLowerCase().includes(planetsList.search.toLowerCase())
+                    }
+                }
+                )})
+            });
+        const showMessageRefBool = ref(false);
 
         onBeforeMount(async() =>{
             await getPlanetsList();
-        })
+        });
+
+        onBeforeUpdate(() =>{
+            planetsList.filterPlanetsList != 0? showMessageRefBool.value = false : showMessageRefBool.value = true;
+        });
 
        
         const getRequestPlanets = async () =>{
@@ -38,7 +55,7 @@ export default {
         }
 
         const getPlanetsList = async () =>{
-           planetsRefList.value = await setNameSectionstoLoweCase({getSection: getRequestPlanets()})
+           planetsList.planets = await setNameSectionstoLoweCase({getSection: getRequestPlanets()})
         };
 
 
@@ -48,7 +65,8 @@ export default {
 
         return{
             onGoRouter,
-            planetsRefList
+            ...toRefs(planetsList),
+            showMessageRefBool
 
         }
     }

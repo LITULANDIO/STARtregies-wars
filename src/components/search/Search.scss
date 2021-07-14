@@ -3,10 +3,12 @@
 .search{
     box-shadow: 0px 0px 4px 2px $yellow;
     background: transparent;
-    color: $yellow;
-    padding-left: 15px;
+    color: $white;
+    padding: 15px;
     &:focus{
         outline: none !important;
+        box-shadow: 0px 0px 4px 2px $blue;
+
     }
 
 }

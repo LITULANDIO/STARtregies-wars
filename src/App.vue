@@ -11,9 +11,8 @@
 @import "./assets/colors.scss";
 
 #background-stars{
-  
   background-image: url("./assets/img/background.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   div, h1, h2, h3{
     font-family: 'Star Jedi', arial;
   }
