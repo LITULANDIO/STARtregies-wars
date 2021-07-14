@@ -7,6 +7,9 @@ import Search from "@/components/search/Search.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
 import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate } from '@vue/runtime-core';
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
 export default {
     name: 'People',
     components:{
@@ -14,7 +17,6 @@ export default {
         GoBack,
         Search
     },
-    emits:[],
     setup(){
 
         const characterList = reactive({
@@ -29,6 +31,8 @@ export default {
                 )})
             });
         const showMessageRefBool = ref(false);
+        const router = useRouter();
+        const store = useStore();
 
 
         onBeforeMount(async() =>{
@@ -37,7 +41,7 @@ export default {
 
         onBeforeUpdate(() =>{
             characterList.filterCharactersList != 0? showMessageRefBool.value = false : showMessageRefBool.value = true;
-        })
+        });
 
        
         const getRequestPeople = async () =>{
@@ -60,7 +64,12 @@ export default {
 
 
         const onGoRouter = (event) =>{
-            console.log(event.name)
+            characterList.characters.forEach((character, index) => {
+                if(event.name == character.name){
+                    router.push(`/people/${index+1}`)
+                    store.commit('SET_PARAM', index+1);
+                }
+            });
         }
 
 
@@ -75,4 +84,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./People.scss" scope></style>
+<style lang="scss" src="./People.scss" scoped></style>

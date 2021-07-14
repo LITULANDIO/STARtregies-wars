@@ -73,4 +73,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./Starships.scss" scope></style>
+<style lang="scss" src="./Starships.scss" scoped></style>

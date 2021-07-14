@@ -15,6 +15,17 @@ export const PeopleDataProvider = ({ type, params, baseAPIurl }) => {
                 throw new Error(`Error baseAPIurl are necessary`)
             }
             break;
+        
+        case "GET_DETAIL":
+                if (baseAPIurl) {
+                    options = {
+                        method: 'GET',
+                        url: `${baseAPIurl}/people/${params}`
+                    };
+                } else {
+                    throw new Error(`Error baseAPIurl are necessary`)
+                }
+            break;
     }
 
     if (!!options) {

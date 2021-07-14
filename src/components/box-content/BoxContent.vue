@@ -34,4 +34,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./BoxContent.scss"></style>
+<style lang="scss" src="./BoxContent.scss" scoped></style>

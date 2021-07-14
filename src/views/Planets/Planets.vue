@@ -17,7 +17,7 @@ export default {
     },
     setup(){
 
-         const planetsList = reactive({
+        const planetsList = reactive({
                 planets: [],
                 search: "",
                 filterPlanetsList: computed(()=>{
@@ -74,4 +74,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./Planets.scss" scope></style>
+<style lang="scss" src="./Planets.scss" scoped></style>
