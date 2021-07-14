@@ -1,0 +1,19 @@
+<article class="container mx-auto">
+    <div class="mb-5 flex justify-between items-center">
+        <h2>Detail planet</h2>
+        <GoBack />
+    </div>
+    <div class="detail">
+        <section class="justify-start flex flex-col items-center">
+            <div><span>Name:</span> {{ detailPlanetsRefObj.name }}</div>
+            <div><span>Orbital period:</span> {{ detailPlanetsRefObj.orbital_period }}</div>
+            <div><span>Population:</span> {{ detailPlanetsRefObj.population}}</div>
+            <div><span>Rotation period:</span> {{ detailPlanetsRefObj.rotation_period }}</div>
+            <div><span>Terrain:</span> {{ detailPlanetsRefObj.terrain }}</div>
+            <div><span>Diameter:</span> {{ detailPlanetsRefObj.diameter }}</div>
+            <div><span>Gravity:</span> {{ detailPlanetsRefObj.gravity }}</div>
+            <div><span>Climate:</span> {{ detailPlanetsRefObj.climate }}</div>
+        </section>
+
+    </div>
+</article>

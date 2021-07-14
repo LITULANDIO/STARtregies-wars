@@ -7,6 +7,8 @@ import Search from "@/components/search/Search.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
 import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate } from '@vue/runtime-core';
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 export default {
     name: 'Planets',
@@ -29,6 +31,8 @@ export default {
                 )})
             });
         const showMessageRefBool = ref(false);
+        const router = useRouter();
+        const store = useStore();
 
         onBeforeMount(async() =>{
             await getPlanetsList();
@@ -60,7 +64,12 @@ export default {
 
 
         const onGoRouter = (event) =>{
-            console.log(event.name)
+            planetsList.planets.forEach((planet, index) => {
+                if(event.name == planet.name){
+                    router.push(`/planets/${index+1}`)
+                    store.commit('SET_PARAM', index+1);
+                }
+            });
         }
 
         return{

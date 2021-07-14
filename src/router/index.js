@@ -3,6 +3,7 @@ import Home from "../views/Home/Home.vue";
 import People from "../views/People/People.vue";
 import DetailPeople from "../views/People/detail/DetailPeople.vue";
 import Planets from "../views/Planets/Planets.vue";
+import DetailPlanets from "../views/Planets/detail/DetailPlanets.vue";
 import Starships from "../views/Starships/Starships.vue";
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: "/planets",
     name: "Planets",
     component: Planets,
+  },
+  {
+    path: "/planets/:id",
+    name: "DetailPlanets",
+    component: DetailPlanets,
   },
   {
     path: "/starships",
