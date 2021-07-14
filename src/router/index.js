@@ -3,8 +3,10 @@ import Home from "../views/Home/Home.vue";
 import People from "../views/People/People.vue";
 import DetailPeople from "../views/People/detail/DetailPeople.vue";
 import Planets from "../views/Planets/Planets.vue";
-import DetailPlanets from "../views/Planets/detail/DetailPlanets.vue";
+import DetailPlanet from "../views/Planets/detail/DetailPlanets.vue";
 import Starships from "../views/Starships/Starships.vue";
+import DetailStarship from "../views/Starships/detail/DetailStarship.vue";
+
 
 const routes = [
   {
@@ -29,13 +31,18 @@ const routes = [
   },
   {
     path: "/planets/:id",
-    name: "DetailPlanets",
-    component: DetailPlanets,
+    name: "DetailPlanet",
+    component: DetailPlanet,
   },
   {
     path: "/starships",
     name: "Starships",
     component: Starships,
+  },
+  {
+    path: "/starships/:id",
+    name: "DetailStarship",
+    component: DetailStarship,
   },
 
 ];

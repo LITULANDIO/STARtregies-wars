@@ -7,6 +7,8 @@ import Search from "@/components/search/Search.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
 import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate } from '@vue/runtime-core';
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 export default {
     name: 'Starships',
@@ -29,6 +31,8 @@ export default {
                 )})
             });
         const showMessageRefBool = ref(false);
+        const router = useRouter();
+        const store = useStore();
 
         onBeforeMount(async() =>{
             await getStarShipsList();
@@ -59,7 +63,12 @@ export default {
 
 
         const onGoRouter = (event) =>{
-            console.log(event.name)
+             starshipsList.starships.forEach((starship, index) => {
+                if(event.name == starship.name){
+                    router.push(`/starships/${index+1}`)
+                    store.commit('SET_PARAM', index+1);
+                }
+            });
         }
 
         return{

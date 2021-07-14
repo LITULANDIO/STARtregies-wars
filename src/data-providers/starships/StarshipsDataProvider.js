@@ -15,6 +15,17 @@ export const StarshipsDataProvider = ({ type, params, baseAPIurl }) => {
                 throw new Error(`Error baseAPIurl are necessary`)
             }
             break;
+
+        case "GET_DETAIL":
+                if (baseAPIurl) {
+                    options = {
+                        method: 'GET',
+                        url: `${baseAPIurl}/starships/${params}`
+                    };
+                } else {
+                    throw new Error(`Error baseAPIurl are necessary`)
+                }
+            break;
     }
 
     if (!!options) {

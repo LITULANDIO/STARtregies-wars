@@ -1,0 +1,19 @@
+<article class="container mx-auto">
+    <div class="mb-5 flex justify-between items-center">
+        <h2>Detail Starship</h2>
+        <GoBack />
+    </div>
+    <div class="detail">
+        <section v-if="detailStarshipRefObj" class="justify-start flex flex-col items-center">
+            <div><span>Name:</span> {{ detailStarshipRefObj.name }}</div>
+            <div><span>Model:</span> {{ detailStarshipRefObj.model }}</div>
+            <div><span>Pilots:</span> <span v-for="pilot in detailStarshipRefObj.pilots"></span>{{ pilot }}</div>
+            <div><span>Passengers:</span> {{ detailStarshipRefObj.passengers }}</div>
+            <div><span>Starship class:</span> {{ detailStarshipRefObj.starship_class }}</div>
+            <div><span>Crew:</span> {{ detailStarshipRefObj.crew }}</div>
+            <div><span>Consumables:</span> {{ detailStarshipRefObj.consumables }}</div>
+            <div><span>MGLT:</span> {{ detailStarshipRefObj.MGLT }}</div>
+        </section>
+        <section v-if="!detailStarshipRefObj" class="text-center"><h3>No data available</h3></section>
+    </div>
+</article>

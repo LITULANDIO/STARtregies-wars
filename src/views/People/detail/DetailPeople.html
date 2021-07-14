@@ -4,7 +4,7 @@
         <GoBack />
     </div>
     <div class="detail">
-        <section class="justify-start flex flex-col items-center">
+        <section v-if="detailPeopleRefObj" class="justify-start flex flex-col items-center">
             <div><span>Name:</span> {{ detailPeopleRefObj.name }}</div>
             <div><span>Male:</span> {{ detailPeopleRefObj.gender }}</div>
             <div><span>Birth Year:</span> {{ detailPeopleRefObj.birth_year }}</div>
@@ -14,6 +14,6 @@
             <div><span>Mass:</span> {{ detailPeopleRefObj.mass }}</div>
             <div><span>Hair color:</span> {{ detailPeopleRefObj.hair_color }}</div>
         </section>
-
+        <section v-if="!detailPeopleRefObj" class="text-center"><h3>No data available</h3></section>
     </div>
 </article>

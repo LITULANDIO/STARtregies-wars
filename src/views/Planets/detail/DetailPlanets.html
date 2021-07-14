@@ -4,7 +4,7 @@
         <GoBack />
     </div>
     <div class="detail">
-        <section class="justify-start flex flex-col items-center">
+        <section v-if="detailPlanetsRefObj" class="justify-start flex flex-col items-center">
             <div><span>Name:</span> {{ detailPlanetsRefObj.name }}</div>
             <div><span>Orbital period:</span> {{ detailPlanetsRefObj.orbital_period }}</div>
             <div><span>Population:</span> {{ detailPlanetsRefObj.population}}</div>
@@ -14,6 +14,9 @@
             <div><span>Gravity:</span> {{ detailPlanetsRefObj.gravity }}</div>
             <div><span>Climate:</span> {{ detailPlanetsRefObj.climate }}</div>
         </section>
+        <section v-if="!detailPlanetsRefObj" class="text-center"><h3>No data available</h3></section>
+
+
 
     </div>
 </article>
