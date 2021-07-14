@@ -1,14 +1,18 @@
 <article class="container mx-auto">
-    <div class="mb-10 flex justify-between items-center">
-        <h2>Character</h2>
-        <Search v-model:modelSearch="search" />
+    <div class="mb-8 | md:flex md:justify-between items-center">
+        <h2 class="mb-2">Character</h2>
+        <Search v-model:modelSearch="search" class="mb-2" />
         <GoBack />
+    </div>
+    <div class="flex justify-center z-10 items-center">
+        <Spinner :loading="spinnerDataRefObj.loading" :color="spinnerDataRefObj.color" :size="spinnerDataRefObj.size" />
     </div>
     <div class="h-full | flex flex-col justify-center items-center">
         <BoxContent v-for="(character, index) in filterCharactersList" :key="index" :title="character.name"
             @onGoRouter="onGoRouter" />
     </div>
-    <div class="text-center mt-10" v-if="showMessageRefBool">
-        <h3>No data available</h3>
-    </div>
 </article>
+
+<div class="h-screen | mt-10 | text-center" v-if="showMessageRefBool">
+    <h3>No data available</h3>
+</div>

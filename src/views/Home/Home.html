@@ -1,8 +1,11 @@
-<article class="container mx-auto">
+<article class="container mx-auto mt-16">
 <div class="h-full | flex flex-col justify-center items-center">
     <BoxContent v-for="(section, index) in sectionsList" :key="index"
         :title="section.title"
         @onGoRouter="onGoRouter"
-    />
+
+    >
+        <img :src="section.img" class="img-section" />
+    </BoxContent>
 </div>
 </article>

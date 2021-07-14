@@ -8,7 +8,7 @@ export default {
         title:{
             type: String,
             required: true
-        }
+        },
     },
     emits:["onGoRouter"],
     setup(props, {emit}){

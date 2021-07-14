@@ -20,9 +20,9 @@ export default {
 
         const getSections = () =>{
             sectionsList.value = [
-                {title: "character", link: "/people"}, 
-                {title: "planets", link: "/planets"}, 
-                {title: "starships", link: "/starships"}]
+                {title: "character", link: "/people", img: require("../../assets/img/character.png")}, 
+                {title: "planets", link: "/planets", img: require("../../assets/img/planet.png")}, 
+                {title: "starships", link: "/starships", img: require("../../assets/img/starships.png")}]
         }
 
         const onGoRouter = (event) =>{

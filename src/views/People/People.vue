@@ -4,9 +4,11 @@
 import BoxContent from "@/components/box-content/BoxContent.vue";
 import GoBack from "@/components/go-back/GoBack.vue";
 import Search from "@/components/search/Search.vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
-import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate } from '@vue/runtime-core';
+import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate, onMounted } from '@vue/runtime-core';
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
@@ -15,7 +17,9 @@ export default {
     components:{
         BoxContent,
         GoBack,
-        Search
+        Search,
+        Spinner: PulseLoader,
+
     },
     setup(){
 
@@ -33,11 +37,23 @@ export default {
         const showMessageRefBool = ref(false);
         const router = useRouter();
         const store = useStore();
+        const spinnerDataRefObj = ref({
+            loading: true,
+            color: "#FFE08F",
+            size: "25px",
+        });
 
 
         onBeforeMount(async() =>{
             await getPeopleList();
+            spinnerDataRefObj.value.loading = false;
+
         });
+
+        onMounted(() =>{
+            
+
+        })
 
         onBeforeUpdate(() =>{
             characterList.filterCharactersList != 0? showMessageRefBool.value = false : showMessageRefBool.value = true;
@@ -77,7 +93,8 @@ export default {
         return{
             onGoRouter,
             ...toRefs(characterList),
-            showMessageRefBool
+            showMessageRefBool,
+            spinnerDataRefObj
         }
     }
 

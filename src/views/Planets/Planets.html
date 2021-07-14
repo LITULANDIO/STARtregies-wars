@@ -1,16 +1,19 @@
 <article class="container mx-auto">
-    <div class="mb-10 | flex justify-between">
-        <h2>Planets</h2>
-        <Search v-model:modelSearch="search" />
+    <div class="mb-8 | md:flex md:justify-between items-center">
+        <h2 class="mb-2">Planets</h2>
+        <Search v-model:modelSearch="search" class="mb-2"/>
         <GoBack />
+    </div>
+    <div class="flex justify-center  z-10 items-center">
+        <Spinner :loading="spinnerDataRefObj.loading" :color="spinnerDataRefObj.color" :size="spinnerDataRefObj.size" />
     </div>
     <div class="h-full | flex flex-col justify-center items-center">
         <BoxContent v-for="(planet, index) in filterPlanetsList" :key="index"
-            :title="planet.name"
-            @onGoRouter="onGoRouter"
+        :title="planet.name"
+        @onGoRouter="onGoRouter"
         />
     </div>
-    <div class="text-center mt-10" v-if="showMessageRefBool">
+    <div class="h-screen | mt-10 | text-center" v-if="showMessageRefBool">
         <h3>No data available</h3>
     </div>
 </article>
