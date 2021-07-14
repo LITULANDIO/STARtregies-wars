@@ -1,13 +1,17 @@
 <article class="container mx-auto">
-    <div class="mb-5 | flex justify-between">
+    <div class="mb-10 | flex justify-between">
         <h2>StarShips</h2>
+        <Search v-model:modelSearch="search" />
         <GoBack />
     </div>
     <div class="h-full | flex flex-col justify-center items-center">
-        <BoxContent v-for="(starship, index) in starShipsRefList" :key="index"
+        <BoxContent v-for="(starship, index) in filterStarshipsList" :key="index"
             :title="starship.name"
             @onGoRouter="onGoRouter"
         />
     </div>
-    </article>
+    <div class="text-center mt-10" v-if="showMessageRefBool">
+        <h3>No data available</h3>
+    </div>
+ </article>
     

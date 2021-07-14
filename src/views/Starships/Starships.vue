@@ -3,23 +3,41 @@
 <script>
 import BoxContent from "@/components/box-content/BoxContent.vue";
 import GoBack from "@/components/go-back/GoBack.vue";
+import Search from "@/components/search/Search.vue";
 import { DataProvider } from "@/data-providers/index.js";
 import { setNameSectionstoLoweCase } from "@/utils/utils.js";
-import { onBeforeMount, ref } from '@vue/runtime-core';
+import { onBeforeMount, ref, computed, reactive, toRefs, onBeforeUpdate } from '@vue/runtime-core';
 
 export default {
     name: 'Starships',
     components:{
         BoxContent,
-        GoBack
+        GoBack,
+        Search
     },
     setup(){
 
-        const starShipsRefList = ref([]);
+        const starshipsList = reactive({
+                starships: [],
+                search: "",
+                filterStarshipsList: computed(()=>{
+                return starshipsList.starships.filter(data => {
+                    if(data.name){
+                        return data.name.toLowerCase().includes(starshipsList.search.toLowerCase())
+                    }
+                }
+                )})
+            });
+        const showMessageRefBool = ref(false);
 
         onBeforeMount(async() =>{
             await getStarShipsList();
-        })
+        });
+
+        onBeforeUpdate(() =>{
+            starshipsList.filterStarshipsList != 0? showMessageRefBool.value = false : showMessageRefBool.value = true;
+        });
+
 
        
         const getRequestStarShips = async () =>{
@@ -36,7 +54,7 @@ export default {
         }
 
         const getStarShipsList = async () =>{
-           starShipsRefList.value = await setNameSectionstoLoweCase({getSection: getRequestStarShips()})
+           starshipsList.starships = await setNameSectionstoLoweCase({getSection: getRequestStarShips()})
         };
 
 
@@ -46,7 +64,8 @@ export default {
 
         return{
             onGoRouter,
-            starShipsRefList
+            ...toRefs(starshipsList),
+            showMessageRefBool
 
         }
     }
